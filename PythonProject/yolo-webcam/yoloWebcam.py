@@ -9,7 +9,7 @@ device = 'mps' if torch.backends.mps.is_available() else 'cpu'
 print(f"Using device: {device}")
 
 
-model = YOLO("yolov8l.pt").to(device)  # Use 'yolov8n.pt' for even faster inference
+model = YOLO("yolov8l.pt").to(device)  
 cap = cv2.VideoCapture("../videos/video2.mp4")
 cap.set(3, 1440)
 cap.set(4, 900)
@@ -35,7 +35,7 @@ while True:
     frame_count += 1
     if frame_count % frame_skip != 0:
         continue
-    results = model(img, stream=True, device=device, half=True)  # half=True for FP16 (faster)
+    results = model(img, stream=True, device=device, half=True)  
     for r in results:
         boxes = r.boxes
         for box in boxes:
